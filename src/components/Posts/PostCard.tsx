@@ -24,7 +24,7 @@ interface Post {
   timestamp: string;
   likes: number;
   comments: number;
-  onImgClick: (media: Media[]) => void;
+  onImgClick: (media: Media[], clickedInd: number) => void;
 }
 
 const PostCard = ({
@@ -66,7 +66,7 @@ const PostCard = ({
             key={index}
             src={item.src}
             alt="post media"
-            onClick={() => onImgClick(content.media)}
+            onClick={() => onImgClick(content.media, index)}
           />
         ))}
       </div>

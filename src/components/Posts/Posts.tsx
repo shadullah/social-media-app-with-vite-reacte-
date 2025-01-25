@@ -158,6 +158,7 @@ const Posts = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [lightbox, setLight] = useState(false);
   const [currentMedia, setMedia] = useState<Media[]>([]);
+  const [initSlide, setInitSlide] = useState(0);
 
   const filteredPosts = posts.filter((post) =>
     post.sender.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -167,9 +168,10 @@ const Posts = () => {
     setSearchTerm(term);
   };
 
-  const handleImgClick = (media: Media[]) => {
+  const handleImgClick = (media: Media[], clickedInd: number) => {
     setMedia(media);
     setLight(true);
+    setInitSlide(clickedInd);
   };
 
   return (
@@ -191,6 +193,7 @@ const Posts = () => {
         <ImgLightBox
           open={lightbox}
           media={currentMedia}
+          initialSlide={initSlide}
           onClose={() => setLight(false)}
         />
       </div>
